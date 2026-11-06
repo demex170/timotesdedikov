@@ -1,1316 +1,486 @@
-```html
+
 <!DOCTYPE html>
 <html lang="ka">
 <head>
 <meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-
-<title>ერთი პატარა მოწვევა 🤍</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ჩემი ერთადერთი — ნინი ❤️</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@300;400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+Georgian:wght@300;400;500;600&display=swap');
 
-:root{
-    --navy:#061426;
-    --blue:#0c315c;
-    --blue2:#164f8d;
-    --ice:#eaf5ff;
-    --white:#ffffff;
-    --line:rgba(255,255,255,.15);
-    --muted:rgba(255,255,255,.65);
-}
-
-*{
-    box-sizing:border-box;
-    margin:0;
-    padding:0;
-}
-
-html{
-    scroll-behavior:smooth;
-}
+*{margin:0;padding:0;box-sizing:border-box}
 
 body{
-    font-family:'Noto Sans Georgian',sans-serif;
-    background:var(--navy);
-    color:white;
-    overflow-x:hidden;
+ background:#080508;
+ color:#fff;
+ font-family:'Noto Sans Georgian',sans-serif;
+ min-height:100vh;
+ overflow-x:hidden;
 }
-
-/* =========================
-   LOADER / CINEMA
-========================= */
-
-#cinema{
-    position:fixed;
-    inset:0;
-    z-index:9999;
-    background:#02070e;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    transition:opacity 1s ease, visibility 1s ease;
-}
-
-#cinema.hide{
-    opacity:0;
-    visibility:hidden;
-}
-
-.cinema-content{
-    width:90%;
-    text-align:center;
-}
-
-.cinema-small{
-    font-size:11px;
-    letter-spacing:5px;
-    color:#86b9ec;
-    margin-bottom:28px;
-    opacity:0;
-    animation:cinemaIn 1.5s forwards .5s;
-}
-
-.cinema-title{
-    font-size:clamp(25px,7vw,55px);
-    font-weight:300;
-    line-height:1.4;
-    opacity:0;
-    animation:cinemaIn 1.5s forwards 1.2s;
-}
-
-.cinema-line{
-    width:0;
-    height:1px;
-    background:white;
-    margin:30px auto;
-    animation:lineIn 1.2s forwards 2.5s;
-}
-
-.cinema-sub{
-    font-size:13px;
-    color:rgba(255,255,255,.6);
-    opacity:0;
-    animation:cinemaIn 1.5s forwards 3s;
-}
-
-@keyframes cinemaIn{
-    from{
-        opacity:0;
-        transform:translateY(18px);
-    }
-    to{
-        opacity:1;
-        transform:translateY(0);
-    }
-}
-
-@keyframes lineIn{
-    to{
-        width:80px;
-    }
-}
-
-/* =========================
-   GLOBAL
-========================= */
-
-.noise{
-    position:fixed;
-    inset:0;
-    pointer-events:none;
-    z-index:100;
-    opacity:.035;
-    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.5'/%3E%3C/svg%3E");
-}
-
-.bg-light{
-    position:fixed;
-    width:600px;
-    height:600px;
-    border-radius:50%;
-    background:radial-gradient(circle,rgba(38,112,190,.18),transparent 65%);
-    top:-250px;
-    right:-200px;
-    pointer-events:none;
-}
-
-.bg-light2{
-    position:fixed;
-    width:500px;
-    height:500px;
-    border-radius:50%;
-    background:radial-gradient(circle,rgba(74,150,220,.12),transparent 65%);
-    bottom:-250px;
-    left:-200px;
-    pointer-events:none;
-}
-
-/* =========================
-   HERO
-========================= */
 
-.hero{
-    min-height:100svh;
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    position:relative;
-    padding:30px;
-    text-align:center;
-    overflow:hidden;
-}
-
-.hero:before{
-    content:"";
-    position:absolute;
-    width:1px;
-    height:100%;
-    background:linear-gradient(
-        transparent,
-        rgba(255,255,255,.12),
-        transparent
-    );
-    left:50%;
-}
-
-.hero-content{
-    position:relative;
-    z-index:2;
-    max-width:800px;
-}
-
-.eyebrow{
-    font-size:10px;
-    letter-spacing:6px;
-    color:#8fc6fa;
-    margin-bottom:28px;
-}
-
-.hero h1{
-    font-size:clamp(42px,12vw,100px);
-    line-height:1.05;
-    font-weight:300;
-    letter-spacing:-3px;
-}
-
-.hero h1 strong{
-    display:block;
-    font-weight:700;
-    color:white;
-}
-
-.hero-description{
-    max-width:520px;
-    margin:30px auto 0;
-    color:var(--muted);
-    font-size:14px;
-    line-height:2;
-}
-
-.scroll{
-    position:absolute;
-    bottom:35px;
-    left:50%;
-    transform:translateX(-50%);
-    display:flex;
-    flex-direction:column;
-    align-items:center;
-    gap:12px;
-    color:rgba(255,255,255,.45);
-    font-size:9px;
-    letter-spacing:3px;
-}
-
-.scroll-line{
-    width:1px;
-    height:55px;
-    background:linear-gradient(white,transparent);
-}
-
-/* =========================
-   SECTIONS
-========================= */
-
-section{
-    padding:110px 20px;
-    position:relative;
-}
-
-.container{
-    width:min(100%,900px);
-    margin:auto;
-}
-
-.section-label{
-    color:#75b5ed;
-    font-size:10px;
-    letter-spacing:4px;
-    margin-bottom:18px;
-}
-
-.section-title{
-    font-size:clamp(27px,7vw,48px);
-    font-weight:400;
-    line-height:1.35;
-    margin-bottom:15px;
-}
-
-.section-description{
-    color:rgba(255,255,255,.55);
-    font-size:13px;
-    line-height:1.9;
-    margin-bottom:45px;
-}
-
-/* =========================
-   CHOICE CARDS
-========================= */
-
-.choice-grid{
-    display:grid;
-    grid-template-columns:repeat(2,1fr);
-    gap:12px;
-}
-
-.choice{
-    position:relative;
-    min-height:125px;
-    padding:24px 18px;
-    border:1px solid var(--line);
-    background:linear-gradient(
-        145deg,
-        rgba(255,255,255,.055),
-        rgba(255,255,255,.015)
-    );
-    cursor:pointer;
-    transition:.35s ease;
-    display:flex;
-    flex-direction:column;
-    justify-content:space-between;
-    overflow:hidden;
-}
-
-.choice:before{
-    content:"";
-    position:absolute;
-    inset:0;
-    background:linear-gradient(
-        135deg,
-        rgba(82,158,225,.17),
-        transparent 50%
-    );
-    opacity:0;
-    transition:.35s;
-}
-
-.choice:hover:before,
-.choice.selected:before{
-    opacity:1;
-}
-
-.choice:hover{
-    border-color:rgba(132,193,244,.5);
-    transform:translateY(-3px);
-}
-
-.choice.selected{
-    border-color:#7fc2fa;
-    background:rgba(32,93,153,.25);
-}
-
-.choice-check{
-    position:absolute;
-    top:12px;
-    right:12px;
-    width:20px;
-    height:20px;
-    border:1px solid rgba(255,255,255,.2);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:10px;
-    opacity:.4;
-}
-
-.choice.selected .choice-check{
-    background:#fff;
-    color:#071a32;
-    border-color:#fff;
-    opacity:1;
-}
-
-.choice-icon{
-    font-size:25px;
-    margin-bottom:14px;
-}
-
-.choice-name{
-    font-size:14px;
-    position:relative;
-    z-index:2;
-}
-
-.choice-sub{
-    color:rgba(255,255,255,.45);
-    font-size:10px;
-    margin-top:5px;
-}
-
-/* =========================
-   DATE
-========================= */
-
-.date-box{
-    border:1px solid var(--line);
-    padding:28px 22px;
-    background:rgba(255,255,255,.025);
-}
+body:before{
+ content:"";
+ position:fixed;
+ inset:0;
+ pointer-events:none;
+ background:radial-gradient(ellipse at center,#43132655,transparent 65%);
+}
 
-.date-box label{
-    display:block;
-    color:#78b8ef;
-    font-size:10px;
-    letter-spacing:2px;
-    margin-bottom:14px;
-}
-
-input[type="date"],
-input[type="time"]{
-    width:100%;
-    border:0;
-    border-bottom:1px solid rgba(255,255,255,.2);
-    background:transparent;
-    color:white;
-    padding:15px 0;
-    font-family:inherit;
-    font-size:17px;
-    outline:none;
-}
-
-input::-webkit-calendar-picker-indicator{
-    filter:invert(1);
-}
-
-/* =========================
-   SUMMARY
-========================= */
+#stars{position:fixed;inset:0;pointer-events:none;z-index:0}
 
-.summary{
-    margin-top:70px;
-}
-
-.ticket{
-    position:relative;
-    background:#fff;
-    color:#071a32;
-    padding:38px 28px;
-    overflow:hidden;
-}
+.star{
+ position:absolute;
+ width:2px;height:2px;
+ background:#f5b6ca;
+ border-radius:50%;
+ animation:twinkle 3s infinite alternate;
+}
 
-.ticket:before,
-.ticket:after{
-    content:"";
-    position:absolute;
-    width:25px;
-    height:25px;
-    border-radius:50%;
-    background:var(--navy);
-    top:50%;
-    transform:translateY(-50%);
+@keyframes twinkle{
+ to{opacity:.1;transform:scale(.4)}
 }
 
-.ticket:before{
-    left:-13px;
-}
+.screen{
+ position:relative;
+ min-height:100svh;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ flex-direction:column;
+ text-align:center;
+ padding:25px;
+ z-index:1;
+}
 
-.ticket:after{
-    right:-13px;
+.intro{animation:entrance 1.8s ease both}
+
+@keyframes entrance{
+ from{opacity:0;transform:translateY(30px)}
+ to{opacity:1;transform:translateY(0)}
+}
+
+.label{
+ font-size:10px;
+ letter-spacing:5px;
+ color:#d38ba5;
+ margin-bottom:20px;
+}
+
+h1{
+ font-size:clamp(32px,7vw,65px);
+ font-weight:300;
+ line-height:1.5;
+}
+
+h1 span{color:#ed9bb7}
+
+.sub{
+ font-size:13px;
+ color:#bda6b0;
+ line-height:2.2;
+ margin-top:15px;
+}
+
+/* კონვერტი */
+
+.envelope-area{
+ position:relative;
+ width:290px;
+ height:205px;
+ margin:65px auto 35px;
+ perspective:1000px;
+ cursor:pointer;
+ isolation:isolate;
+}
+
+.envelope{
+ position:absolute;
+ inset:0;
+ z-index:3;
+ background:linear-gradient(145deg,#67233e,#361323);
+ border:1px solid #a45572;
+ border-radius:4px;
+ box-shadow:0 20px 70px #0009,0 0 45px #9d355b22;
 }
 
-.ticket-top{
-    display:flex;
-    justify-content:space-between;
-    align-items:flex-start;
-    border-bottom:1px solid #d8e5ef;
-    padding-bottom:25px;
-}
+/* წერილი კონვერტის შიგნით */
 
-.ticket-label{
-    font-size:9px;
-    letter-spacing:3px;
-    color:#53718f;
+.paper{
+ position:absolute;
+ z-index:2;
+ width:90%;
+ height:175px;
+ left:5%;
+ top:12px;
+ background:#f5e8e9;
+ color:#60253c;
+ border-radius:3px;
+ display:flex;
+ align-items:center;
+ justify-content:center;
+ font-size:13px;
+ line-height:2;
+ transition:transform 1.2s ease,top 1.2s ease;
+ box-shadow:0 0 20px #0005;
+ pointer-events:none;
 }
-
-.ticket-title{
-    font-size:25px;
-    font-weight:600;
-    margin-top:8px;
+
+/* კონვერტის სამკუთხა წინა მხარე */
+
+.envelope:before{
+ content:"";
+ position:absolute;
+ inset:0;
+ z-index:4;
+ background:linear-gradient(145deg,#792a48,#541a31);
+ clip-path:polygon(0 0,50% 52%,100% 0,100% 100%,0 100%);
 }
 
-.ticket-code{
-    font-size:9px;
-    letter-spacing:2px;
-    color:#53718f;
-}
+/* ზედა სახურავი */
 
-.summary-grid{
-    display:grid;
-    grid-template-columns:1fr 1fr;
-    gap:25px 20px;
-    padding:30px 0;
+.flap{
+ position:absolute;
+ top:0;
+ left:0;
+ width:100%;
+ height:105px;
+ background:#8d3656;
+ clip-path:polygon(0 0,100% 0,50% 100%);
+ transform-origin:top;
+ transition:transform 1s ease;
+ z-index:5;
 }
 
-.summary-item small{
-    display:block;
-    color:#7791a8;
-    font-size:9px;
-    letter-spacing:2px;
-    margin-bottom:7px;
+.seal{
+ position:absolute;
+ z-index:7;
+ top:75px;
+ left:50%;
+ transform:translateX(-50%);
+ width:45px;
+ height:45px;
+ border-radius:50%;
+ display:grid;
+ place-items:center;
+ background:radial-gradient(circle,#ed9db6,#9b3457);
+ box-shadow:0 0 20px #e78cac77;
+ font-size:22px;
+ transition:.5s;
 }
 
-.summary-item span{
-    font-size:14px;
-    font-weight:500;
-}
+/* გახსნის ანიმაცია */
 
-.ticket-bottom{
-    border-top:1px dashed #b7cbdc;
-    padding-top:25px;
-    display:flex;
-    justify-content:space-between;
-    font-size:10px;
-    color:#637d94;
+.envelope-area.open .flap{
+ transform:rotateX(180deg);
+ z-index:1;
 }
 
-/* =========================
-   FINAL
-========================= */
-
-.final{
-    min-height:80vh;
-    display:flex;
-    align-items:center;
-    text-align:center;
+.envelope-area.open .seal{
+ opacity:0;
+ transform:translateX(-50%) scale(0);
 }
 
-.final-inner{
-    width:min(100%,700px);
-    margin:auto;
+.envelope-area.open .paper{
+ transform:translateY(-145px);
+ top:-5px;
+ z-index:8;
 }
 
-.final h2{
-    font-size:clamp(35px,10vw,70px);
-    font-weight:300;
-    line-height:1.2;
+.hint{
+ font-size:11px;
+ color:#b9879a;
+ letter-spacing:2px;
+ animation:pulse 2s infinite;
 }
 
-.final h2 span{
-    font-weight:700;
+@keyframes pulse{
+ 50%{opacity:.4}
 }
 
-.final p{
-    color:rgba(255,255,255,.55);
-    font-size:13px;
-    line-height:2;
-    margin:25px auto 35px;
-    max-width:500px;
-}
+/* წერილის გამოჩენა */
 
-.confirm{
-    display:inline-flex;
-    border:1px solid rgba(255,255,255,.4);
-    color:white;
-    padding:17px 30px;
-    background:white;
-    color:#071a32;
-    font-family:inherit;
-    font-size:12px;
-    cursor:pointer;
-    transition:.3s;
+#letter{
+ display:none;
+ width:min(700px,100%);
+ margin:20px auto 50px;
+ animation:letterIn 1.5s ease both;
 }
 
-.confirm:hover{
-    transform:translateY(-3px);
-    box-shadow:0 15px 40px rgba(77,159,227,.2);
+@keyframes letterIn{
+ from{opacity:0;transform:translateY(50px) scale(.96)}
+ to{opacity:1;transform:translateY(0) scale(1)}
 }
 
-.confirm:active{
-    transform:scale(.97);
+.letter-card{
+ padding:clamp(25px,6vw,55px);
+ background:linear-gradient(145deg,#201018,#10090e);
+ border:1px solid #71334b;
+ border-radius:7px;
+ box-shadow:0 20px 80px #0009;
+ text-align:left;
 }
 
-/* =========================
-   FOOTER
-========================= */
-
-footer{
-    padding:50px 20px;
-    text-align:center;
-    border-top:1px solid rgba(255,255,255,.08);
+.letter-card h2{
+ text-align:center;
+ font-weight:400;
+ color:#f1b0c5;
+ font-size:clamp(23px,5vw,37px);
+ line-height:1.7;
 }
 
-.footer-logo{
-    width:35px;
-    height:auto;
-    opacity:.75;
-    margin-bottom:12px;
+.divider{
+ width:65px;
+ height:1px;
+ background:#b65d7d;
+ margin:25px auto;
 }
 
-footer p{
-    font-size:9px;
-    color:rgba(255,255,255,.3);
-    letter-spacing:2px;
+.letter-text{
+ white-space:pre-line;
+ font-size:14px;
+ color:#e4ced7;
+ line-height:2.5;
 }
-
-/* =========================
-   MUSIC
-========================= */
 
-.music-indicator{
-    position:fixed;
-    right:18px;
-    top:18px;
-    z-index:200;
-    width:40px;
-    height:40px;
-    border:1px solid rgba(255,255,255,.18);
-    display:flex;
-    align-items:center;
-    justify-content:center;
-    font-size:13px;
-    background:rgba(3,14,27,.8);
+.signature{
+ text-align:right;
+ color:#eea2bc;
+ font-size:18px;
+ margin-top:30px;
 }
 
-.music-bars{
-    display:flex;
-    gap:2px;
-    align-items:flex-end;
-    height:14px;
+.ending{
+ text-align:center;
+ margin-top:35px;
 }
 
-.music-bars i{
-    display:block;
-    width:2px;
-    height:5px;
-    background:#8cc5f5;
-    animation:music .8s infinite alternate;
+.ending p{
+ font-size:13px;
+ color:#bda4af;
+ line-height:2.2;
 }
 
-.music-bars i:nth-child(2){
-    animation-delay:.2s;
-    height:11px;
+button{
+ margin-top:25px;
+ padding:14px 24px;
+ background:#351222;
+ border:1px solid #a65373;
+ color:white;
+ font-family:inherit;
+ cursor:pointer;
+ transition:.3s;
 }
 
-.music-bars i:nth-child(3){
-    animation-delay:.4s;
-    height:7px;
+button:hover{
+ background:#67223e;
+ transform:translateY(-3px);
 }
 
-@keyframes music{
-    to{
-        height:13px;
-    }
+.heart{
+ position:fixed;
+ bottom:-30px;
+ pointer-events:none;
+ color:#e78bab;
+ animation:float 8s linear forwards;
+ z-index:10;
 }
-
-/* =========================
-   MOBILE
-========================= */
-
-@media(max-width:600px){
-
-    section{
-        padding:90px 18px;
-    }
-
-    .choice-grid{
-        gap:9px;
-    }
-
-    .choice{
-        min-height:115px;
-        padding:20px 15px;
-    }
-
-    .choice-icon{
-        font-size:22px;
-    }
-
-    .choice-name{
-        font-size:13px;
-    }
-
-    .ticket{
-        padding:30px 22px;
-    }
-
-    .summary-grid{
-        gap:22px 10px;
-    }
 
-    .hero h1{
-        letter-spacing:-2px;
-    }
+@keyframes float{
+ to{
+  transform:translateY(-110vh) rotate(40deg);
+  opacity:0;
+ }
 }
 
-@media(min-width:700px){
-    .choice-grid{
-        grid-template-columns:repeat(3,1fr);
-    }
+@media(max-width:400px){
+ .envelope-area{
+  transform:scale(.88);
+  margin:45px auto 25px;
+ }
+ .letter-text{font-size:13px}
 }
 </style>
 </head>
 
 <body>
 
-<div class="noise"></div>
-<div class="bg-light"></div>
-<div class="bg-light2"></div>
-
-<!-- CINEMA INTRO -->
-<div id="cinema">
-    <div class="cinema-content">
-        <div class="cinema-small">A LITTLE INVITATION</div>
-
-        <div class="cinema-title">
-            ერთი პატარა<br>
-            <strong>მოწვევა შენთვის.</strong>
-        </div>
-
-        <div class="cinema-line"></div>
-
-        <div class="cinema-sub">
-            ყველაფერი შენ უნდა გადაწყვიტო.
-        </div>
-    </div>
-</div>
-
-<!-- MUSIC -->
-<div class="music-indicator">
-    <div class="music-bars">
-        <i></i>
-        <i></i>
-        <i></i>
-    </div>
-</div>
-
-<audio id="music" loop preload="auto">
-    <source src="music.mp3" type="audio/mpeg">
-</audio>
-
-
-<!-- HERO -->
-<header class="hero">
-
-    <div class="hero-content">
-
-        <div class="eyebrow">
-            ONE EVENING · JUST FOR YOU
-        </div>
-
-        <h1>
-            ერთი საღამო.
-            <strong>შენი არჩევანით.</strong>
-        </h1>
-
-        <p class="hero-description">
-            არ მინდა უბრალოდ დაგპატიჟო.
-            მინდა, რომ ეს საღამო თავიდან ბოლომდე
-            შენ შექმნა.
-        </p>
-
-    </div>
-
-    <div class="scroll">
-        <span>SCROLL</span>
-        <div class="scroll-line"></div>
-    </div>
-
-</header>
-
-
-<!-- FOOD -->
-<section>
-
-    <div class="container">
-
-        <div class="section-label">01 — FOOD</div>
-
-        <h2 class="section-title">
-            ჯერ მითხარი,<br>
-            რას ვჭამთ?
-        </h2>
-
-        <p class="section-description">
-            არჩევანი შენზეა. მე უბრალოდ შენს არჩევანს დავეთანხმები.
-        </p>
-
-        <div class="choice-grid" data-group="food">
-
-            <div class="choice" data-value="პიცა">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">🍕</div>
-                <div>
-                    <div class="choice-name">პიცა</div>
-                    <div class="choice-sub">კლასიკური არჩევანი</div>
-                </div>
-            </div>
-
-            <div class="choice" data-value="ბურგერი">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">🍔</div>
-                <div>
-                    <div class="choice-name">ბურგერი</div>
-                    <div class="choice-sub">კარგი და მარტივი</div>
-                </div>
-            </div>
-
-            <div class="choice" data-value="პასტა">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">🍝</div>
-                <div>
-                    <div class="choice-name">პასტა</div>
-                    <div class="choice-sub">იტალიური საღამო</div>
-                </div>
-            </div>
-
-            <div class="choice" data-value="სუში">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">🍣</div>
-                <div>
-                    <div class="choice-name">სუში</div>
-                    <div class="choice-sub">ცოტა განსხვავებული</div>
-                </div>
-            </div>
-
-            <div class="choice" data-value="დესერტი">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">🍰</div>
-                <div>
-                    <div class="choice-name">დესერტი</div>
-                    <div class="choice-sub">ტკბილი დასასრული</div>
-                </div>
-            </div>
-
-            <div class="choice" data-value="შენი არჩევანი">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">✦</div>
-                <div>
-                    <div class="choice-name">შენი არჩევანი</div>
-                    <div class="choice-sub">რაც შენ მოგინდება</div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- DRINK -->
-<section>
-
-    <div class="container">
-
-        <div class="section-label">02 — DRINK</div>
-
-        <h2 class="section-title">
-            და რამე<br>
-            დასალევიც?
-        </h2>
-
-        <p class="section-description">
-            საღამოს თავისი სასმელიც სჭირდება.
-        </p>
-
-        <div class="choice-grid" data-group="drink">
-
-            <div class="choice" data-value="ყავა">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">☕</div>
-                <div>
-                    <div class="choice-name">ყავა</div>
-                    <div class="choice-sub">მშვიდი საღამო</div>
-                </div>
-            </div>
-
-            <div class="choice" data-value="Bubble Tea">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">🧋</div>
-                <div>
-                    <div class="choice-name">Bubble Tea</div>
-                    <div class="choice-sub">ცოტა უფრო მხიარული</div>
-                </div>
-            </div>
-
-            <div class="choice" data-value="ლიმონათი">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">🍋</div>
-                <div>
-                    <div class="choice-name">ლიმონათი</div>
-                    <div class="choice-sub">ცივი და მარტივი</div>
-                </div>
-            </div>
-
-            <div class="choice" data-value="წვენი">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">🧃</div>
-                <div>
-                    <div class="choice-name">წვენი</div>
-                    <div class="choice-sub">კლასიკა</div>
-                </div>
-            </div>
-
-            <div class="choice" data-value="შენი არჩევანი">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">✦</div>
-                <div>
-                    <div class="choice-name">შენი არჩევანი</div>
-                    <div class="choice-sub">შენ გადაწყვიტე</div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- ACTIVITY -->
-<section>
-
-    <div class="container">
-
-        <div class="section-label">03 — PLAN</div>
-
-        <h2 class="section-title">
-            ახლა ყველაზე<br>
-            მნიშვნელოვანი.
-        </h2>
-
-        <p class="section-description">
-            როგორ გავატაროთ ჩვენი საღამო?
-        </p>
-
-        <div class="choice-grid" data-group="activity">
-
-            <div class="choice" data-value="კინო">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">🎬</div>
-                <div>
-                    <div class="choice-name">კინო</div>
-                    <div class="choice-sub">ფილმი + პოპკორნი</div>
-                </div>
-            </div>
-
-            <div class="choice" data-value="გასეირნება">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">🌙</div>
-                <div>
-                    <div class="choice-name">გასეირნება</div>
-                    <div class="choice-sub">უბრალოდ ჩვენ</div>
-                </div>
-            </div>
-
-            <div class="choice" data-value="კაფე">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">☕</div>
-                <div>
-                    <div class="choice-name">კაფე</div>
-                    <div class="choice-sub">საუბრები საათობით</div>
-                </div>
-            </div>
-
-            <div class="choice" data-value="რესტორანი">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">🍽️</div>
-                <div>
-                    <div class="choice-name">რესტორანი</div>
-                    <div class="choice-sub">ლამაზი საღამო</div>
-                </div>
-            </div>
-
-            <div class="choice" data-value="სიურპრიზი">
-                <div class="choice-check">✓</div>
-                <div class="choice-icon">✦</div>
-                <div>
-                    <div class="choice-name">სიურპრიზი</div>
-                    <div class="choice-sub">დანარჩენს მე მოვიფიქრებ</div>
-                </div>
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<!-- DATE -->
-<section>
+<div id="stars"></div>
 
-    <div class="container">
+<section class="screen">
 
-        <div class="section-label">04 — WHEN</div>
+<div class="intro" id="intro">
 
-        <h2 class="section-title">
-            და ბოლოს...
-        </h2>
+ <div class="label">A LETTER FROM MY HEART</div>
 
-        <p class="section-description">
-            როდის გინდა ეს საღამო?
-        </p>
+ <h1>ჩემო <span>ნინი</span></h1>
 
-        <div class="date-box">
+ <p class="sub">
+  არის რაღაცები, რასაც თვალებში ყურებისასაც ვერ ვამბობ...<br>
+  ამიტომ დღეს ჩემი გული წერილით მოგმართავს.
+ </p>
 
-            <label>თარიღი</label>
-            <input type="date" id="date">
+ <div class="envelope-area" id="envelope" onclick="openLetter()">
 
-            <br><br>
+  <div class="paper">
+   ჩემს ერთადერთ ადამიანს... ❤️
+  </div>
 
-            <label>დრო</label>
-            <input type="time" id="time">
+  <div class="envelope"></div>
 
-        </div>
+  <div class="flap"></div>
 
-    </div>
+  <div class="seal">♥</div>
 
-</section>
+ </div>
 
+ <div class="hint" id="hint">
+  შეეხე კონვერტს გასახსნელად
+ </div>
 
-<!-- SUMMARY -->
-<section class="summary">
+ <div id="letter">
 
-    <div class="container">
+  <div class="letter-card">
 
-        <div class="section-label">YOUR EVENING</div>
+   <div class="label" style="text-align:center">
+    ONLY YOU · ALWAYS YOU
+   </div>
 
-        <h2 class="section-title">
-            შენი არჩევანი.
-        </h2>
+   <h2>შენ ხარ ჩემი ერთადერთი. ❤️</h2>
 
-        <p class="section-description">
-            აი, როგორი იქნება ჩვენი საღამო.
-        </p>
+   <div class="divider"></div>
 
-        <div class="ticket">
+   <div class="letter-text">
+ჩემო ნინი,
 
-            <div class="ticket-top">
+ზოგჯერ ვფიქრობ, როგორ შეიძლება ერთი ადამიანი გახდეს ასეთი მნიშვნელოვანი სხვის ცხოვრებაში...
 
-                <div>
-                    <div class="ticket-label">INVITATION</div>
-                    <div class="ticket-title">
-                        ერთი საღამო
-                    </div>
-                </div>
+შემდეგ შენზე ვფიქრობ და პასუხიც აღარ მჭირდება.
 
-                <div class="ticket-code">
-                    #ONE-01
-                </div>
+შენ ხარ ადამიანი, რომლის შეტყობინებაც ჩემს დღეს ალამაზებს, რომლის ღიმილიც გულს მითბობს და რომლის არსებობაც ჩემს სამყაროს უფრო ლამაზს ხდის.
 
-            </div>
+მინდა იცოდე ერთი რამ:
 
-            <div class="summary-grid">
+ჩემთვის შენ არ ხარ უბრალოდ ადამიანი, რომელიც მიყვარს. შენ ხარ ის ადამიანი, რომელსაც ჩემი გული ყოველდღე თავიდან ირჩევს.
 
-                <div class="summary-item">
-                    <small>საჭმელი</small>
-                    <span id="sumFood">—</span>
-                </div>
+არ მინდა სხვა ღიმილი, რომელიც შენსას შემიცვლის.
+არ მინდა სხვა ხმა, რომლის მოსმენაც შენს ხმაზე მეტად მომინდება.
+არ მინდა სხვა ისტორია, რომელშიც შენ არ იქნები.
 
-                <div class="summary-item">
-                    <small>სასმელი</small>
-                    <span id="sumDrink">—</span>
-                </div>
+მინდა შენთან ერთად შევქმნა უამრავი მოგონება. მინდა, წლების შემდეგაც გაგიღიმო ისე, როგორც დღეს, და გაგახსენო, რომ ოდესღაც ერთი ბიჭი იყო, რომელსაც შენზე წერა არასდროს ბეზრდებოდა.
 
-                <div class="summary-item">
-                    <small>გეგმა</small>
-                    <span id="sumActivity">—</span>
-                </div>
+შეიძლება ყოველთვის ვერ ვიპოვო სწორი სიტყვები, შეიძლება ზოგჯერ რაღაცებიც შემეშალოს, მაგრამ ერთი რამ მინდა არასდროს დაგავიწყდეს:
 
-                <div class="summary-item">
-                    <small>თარიღი</small>
-                    <span id="sumDate">—</span>
-                </div>
+შენ ჩემთვის განსაკუთრებული ხარ.
 
-                <div class="summary-item">
-                    <small>დრო</small>
-                    <span id="sumTime">—</span>
-                </div>
+შენ ხარ ჩემი არჩევანი, ჩემი სითბო და ჩემი ყველაზე საყვარელი ადამიანი.
 
-            </div>
+თუ მთელი სამყარო თავიდან მომიწევდა არჩევა, მაინც შენთან მოვიდოდი.
 
-            <div class="ticket-bottom">
-                <span>FOR YOU</span>
-                <span>JUST ONE EVENING</span>
-            </div>
+არა იმიტომ, რომ სხვა არავინ არსებობს, არამედ იმიტომ, რომ ჩემი გული შენთან არის ბედნიერი.
 
-        </div>
+მიყვარხარ, ნინი. იმაზე მეტად, ვიდრე ამ პატარა წერილში ოდესმე ჩავატევ.
+   </div>
 
-    </div>
+   <div class="signature">
+    მთელი სიყვარულით, დემე ❤️
+   </div>
 
-</section>
+   <div class="divider"></div>
 
-
-<!-- FINAL -->
-<section class="final">
-
-    <div class="final-inner">
-
-        <div class="section-label">
-            THE FINAL SCENE
-        </div>
-
-        <h2>
-            მაშინ<br>
-            <span>შევთანხმდით.</span>
-        </h2>
-
-        <p>
-            ამ საღამოს გეგმა შენ შექმენი.
-            ახლა მხოლოდ ერთი რამ დარჩა —
-            ერთად გავატაროთ.
-        </p>
-
-        <button class="confirm" onclick="confirmInvitation()">
-            🤍 მე თანახმა ვარ
-        </button>
-
-    </div>
-
-</section>
-
-
-<footer>
-
-    <img src="logo.png" class="footer-logo" alt="DENI">
+   <div class="ending">
 
     <p>
-        შექმნილია დენის მიერ
+     და თუ ოდესმე დაგავიწყდება, რამდენად მნიშვნელოვანი ხარ ჩემთვის...
     </p>
 
-</footer>
+    <h2 style="margin-top:15px">
+     გახსოვდეს, რომ მე შენ აგირჩიე. ❤️
+    </h2>
 
+    <p style="margin-top:12px">
+     დღესაც. ხვალაც. ისევ და ისევ.
+    </p>
+
+    <button onclick="location.reload()">
+     წერილის თავიდან წაკითხვა
+    </button>
+
+   </div>
+
+  </div>
+ </div>
+
+</div>
+</section>
 
 <script>
 
-/* =========================
-   STATE
-========================= */
+// ვარსკვლავები
+const stars=document.getElementById('stars');
 
-const state = {
-    food: '',
-    drink: '',
-    activity: '',
-    date: '',
-    time: ''
-};
-
-
-/* =========================
-   CINEMA INTRO
-========================= */
-
-setTimeout(() => {
-
-    document.getElementById('cinema').classList.add('hide');
-
-}, 5200);
-
-
-/* =========================
-   MUSIC
-========================= */
-
-const music = document.getElementById('music');
-
-let musicStarted = false;
-
-function startMusic(){
-
-    if(musicStarted) return;
-
-    music.play()
-        .then(() => {
-
-            musicStarted = true;
-
-        })
-        .catch(() => {});
-
+for(let i=0;i<90;i++){
+ let s=document.createElement('span');
+ s.className='star';
+ s.style.left=Math.random()*100+'%';
+ s.style.top=Math.random()*100+'%';
+ s.style.animationDelay=Math.random()*4+'s';
+ stars.appendChild(s);
 }
 
-document.addEventListener('click', startMusic, {once:false});
-document.addEventListener('touchstart', startMusic, {once:false});
+// კონვერტის გახსნა
+let opened=false;
 
+function openLetter(){
 
-/* =========================
-   CHOICES
-========================= */
+ if(opened)return;
+ opened=true;
 
-document.querySelectorAll('.choice-grid').forEach(grid => {
+ const env=document.getElementById('envelope');
 
-    const group = grid.dataset.group;
+ env.classList.add('open');
 
-    grid.querySelectorAll('.choice').forEach(choice => {
+ document.getElementById('hint').style.opacity='0';
 
-        choice.addEventListener('click', () => {
+ // წერილი ჯერ ამოდის, შემდეგ ჩნდება სრული ტექსტი
+ setTimeout(()=>{
 
-            grid.querySelectorAll('.choice')
-                .forEach(c => c.classList.remove('selected'));
+  document.getElementById('letter').style.display='block';
 
-            choice.classList.add('selected');
+  setTimeout(()=>{
+   document.getElementById('letter').scrollIntoView({
+    behavior:'smooth',
+    block:'start'
+   });
+  },150);
 
-            state[group] = choice.dataset.value;
+  for(let i=0;i<20;i++){
+   setTimeout(createHeart,i*120);
+  }
 
-            updateSummary();
-
-        });
-
-    });
-
-});
-
-
-/* =========================
-   DATE / TIME
-========================= */
-
-document.getElementById('date')
-    .addEventListener('change', e => {
-
-        state.date = e.target.value;
-
-        updateSummary();
-
-    });
-
-document.getElementById('time')
-    .addEventListener('change', e => {
-
-        state.time = e.target.value;
-
-        updateSummary();
-
-    });
-
-
-/* =========================
-   SUMMARY
-========================= */
-
-function updateSummary(){
-
-    document.getElementById('sumFood').textContent =
-        state.food || '—';
-
-    document.getElementById('sumDrink').textContent =
-        state.drink || '—';
-
-    document.getElementById('sumActivity').textContent =
-        state.activity || '—';
-
-    if(state.date){
-
-        const date = new Date(state.date + 'T00:00:00');
-
-        document.getElementById('sumDate').textContent =
-            date.toLocaleDateString('ka-GE', {
-                day:'2-digit',
-                month:'long',
-                year:'numeric'
-            });
-
-    }else{
-
-        document.getElementById('sumDate').textContent = '—';
-
-    }
-
-    document.getElementById('sumTime').textContent =
-        state.time || '—';
+ },1500);
 }
 
+// მოძრავი გულები
+function createHeart(){
 
-/* =========================
-   CONFIRM
-========================= */
+ let h=document.createElement('div');
 
-function confirmInvitation(){
+ h.className='heart';
+ h.textContent=Math.random()>.5?'♥':'♡';
 
-    if(
-        !state.food ||
-        !state.drink ||
-        !state.activity ||
-        !state.date ||
-        !state.time
-    ){
+ h.style.left=Math.random()*100+'%';
+ h.style.fontSize=(13+Math.random()*18)+'px';
+ h.style.animationDuration=(6+Math.random()*5)+'s';
 
-        alert(
-            'ჯერ ყველა არჩევანი გააკეთე 🤍'
-        );
+ document.body.appendChild(h);
 
-        return;
-
-    }
-
-    document.body.innerHTML = `
-
-        <div style="
-            min-height:100svh;
-            background:#061426;
-            color:white;
-            display:flex;
-            align-items:center;
-            justify-content:center;
-            text-align:center;
-            padding:30px;
-            font-family:'Noto Sans Georgian',sans-serif;
-        ">
-
-            <div>
-
-                <div style="
-                    font-size:10px;
-                    letter-spacing:5px;
-                    color:#80bdf0;
-                    margin-bottom:30px;
-                ">
-                    INVITATION ACCEPTED
-                </div>
-
-                <div style="
-                    font-size:clamp(38px,10vw,75px);
-                    font-weight:300;
-                    line-height:1.25;
-                ">
-                    მაშინ...
-                    <br>
-                    <strong>გელოდები. 🤍</strong>
-                </div>
-
-                <p style="
-                    margin-top:30px;
-                    color:rgba(255,255,255,.55);
-                    line-height:2;
-                    font-size:13px;
-                ">
-                    საღამოს გეგმა უკვე გვაქვს.
-                    <br>
-                    ახლა მხოლოდ ისღა დაგვრჩა,
-                    რომ ეს დღე მოვიდეს.
-                </p>
-
-            </div>
-
-        </div>
-
-    `;
-
+ setTimeout(()=>h.remove(),12000);
 }
+
+setInterval(createHeart,1700);
 
 </script>
 
 </body>
 </html>
-```
